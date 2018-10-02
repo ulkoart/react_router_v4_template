@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1)
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
+}
+
 const Login = () => <h2> Login Page </h2>
 
 const Home = () => <h2> Home </h2>
 
+const Task = (props) => <h2> Task {props.match.params.taskId} </h2>
+
 const TaskList = () => (
   <div>
      <ul>
-      <li>Task 1</li>
-      <li>Task 2</li>
-      <li>Task 3</li>
+      <li><Link to={`/task-list/${guid()}`}>Task 1</Link></li>
+      <li><Link to={`/task-list/${guid()}`}>Task 2</Link></li>
+      <li><Link to={`/task-list/${guid()}`}>Task 3</Link></li>
     </ul>
   </div>
 )
@@ -25,7 +36,8 @@ class Main extends Component {
         </ul>
         <Switch>
         <Route exact path="/" component={Home}/>
-        <Route path="/task-list" component={TaskList}/>
+        <Route exact path="/task-list" component={TaskList}/>
+        <Route path='/task-list/:taskId' component={Task}/>
         </Switch>
       </div>
     )
