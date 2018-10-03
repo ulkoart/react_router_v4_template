@@ -10,6 +10,8 @@ function guid() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
 }
 
+const NotFound = () => <h2> 404 - Page not found </h2>
+
 const Login = () => <h2> Login Page </h2>
 
 const Home = () => <h2> Home </h2>
@@ -49,8 +51,9 @@ class App extends Component {
     return (
       <div>
         <Switch>
+        <Route exact path="/" component={Main}/>
         <Route path="/login" component={Login}/>
-        <Route path="/" component={Main}/>
+        <Route component={NotFound} />
         </Switch>
       </div>
     )
