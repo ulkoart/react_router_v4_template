@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch, Redirect } from 'react-router-dom';
 
 function guid() {
   function s4() {
@@ -30,6 +30,7 @@ const TaskList = () => (
 
 class Main extends Component {
   render() {
+    console.log()
     return (
       <div>
         <ul>
@@ -37,8 +38,8 @@ class Main extends Component {
           <li><Link to="/task-list">Task List</Link></li>
         </ul>
         <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/task-list" component={TaskList}/>
+        <Route path="/" exact component={Home}/>
+        <Route path="/task-list" component={TaskList}/>
         <Route path='/task-list/:taskId' component={Task}/>
         </Switch>
       </div>
@@ -51,9 +52,9 @@ class App extends Component {
     return (
       <div>
         <Switch>
-        <Route exact path="/" component={Main}/>
-        <Route path="/login" component={Login}/>
-        <Route component={NotFound} />
+          <Route path="/login" component={Login}/>
+          <Route path="/" exact component={Main}/>
+          <Redirect to="/login" />
         </Switch>
       </div>
     )
