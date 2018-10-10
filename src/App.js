@@ -53,7 +53,7 @@ class App extends Component {
       <div>
         <Switch>
           <Route path="/login" component={Login}/>
-          <Route path="/" exact component={Main}/>
+          <Route path="/" component={Main}/>
           <Redirect to="/login" />
         </Switch>
       </div>
